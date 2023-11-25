@@ -1,0 +1,36 @@
+<!--
+    This file contains Runtime Directives used by .NET Native. The defaults here are suitable for most
+    developers. However, you can modify these parameters to modify the behavior of the .NET Native
+    optimizer.
+
+    Runtime Directives are documented at https://go.microsoft.com/fwlink/?LinkID=391919
+
+    To fully enable reflection for App1.MyClass and all of its public/private members
+    <Type Name="App1.MyClass" Dynamic="Required All"/>
+
+    To enable dynamic creation of the specific instantiation of AppClass<T> over System.Int32
+    <TypeInstantiation Name="App1.AppClass" Arguments="System.Int32" Activate="Required Public" />
+
+    Using the Namespace directive to apply reflection policy to all the types in a particular namespace
+    <Namespace Name="DataClasses.ViewModels" Serialize="All" />
+-->
+
+<Directives xmlns="http://schemas.microsoft.com/netfx/2013/01/metadata">
+  <Application>
+
+    <!-- Refit support for the Reddit and contacts services -->
+    <Type Name="CashRegister.Core.Services.IRedditService" Dynamic="Required All" />
+    <Type Name="CashRegister.Core.Services.IContactsService" Dynamic="Required All" />
+    <Namespace Name="Refit.Implementation" Dynamic="Required All" />
+
+    <!-- JSON models -->
+    <Namespace Name="CashRegister.Core.Models" Dynamic="Required All" />
+
+    <!-- Generated code loaded through reflection -->
+    <Type Name="CommunityToolkit.Mvvm.ComponentModel.__Internals.__ObservableValidatorExtensions" Dynamic="Required Public" />
+    <Type Name="CommunityToolkit.Mvvm.Messaging.__Internals.__IMessengerExtensions" Dynamic="Required Public" />
+      
+    <!-- Validation properties -->
+    <Type Name="CashRegister.Core.ViewModels.Widgets.ValidationFormWidgetViewModel" Dynamic="Required Public" />
+  </Application>
+</Directives>
